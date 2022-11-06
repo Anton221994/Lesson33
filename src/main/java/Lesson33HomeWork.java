@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class Lesson33HomeWork {
 
-    //Домашнее задание
-    //добавить 5 манагеров +
-    //1)проставить для всех пользоватлей сумму, которую они потратили+
-    //2)сделать отдельную функцию для добавления данных в таблицы манагер и юзер+
-    // 3)связать между собой манагеров и юзеров, сумма у менеджера равна, той сумме, которую потратили все его клиенты
-    //4) сделать возможность обновления суммы у конкретного пользователся+
-    //домашку закинуть на гит и прописать примеры работы в файле readme
+    //Г„Г®Г¬Г ГёГ­ГҐГҐ Г§Г Г¤Г Г­ГЁГҐ
+    //Г¤Г®ГЎГ ГўГЁГІГј 5 Г¬Г Г­Г ГЈГҐГ°Г®Гў +
+    //1)ГЇГ°Г®Г±ГІГ ГўГЁГІГј Г¤Г«Гї ГўГ±ГҐГµ ГЇГ®Г«ГјГ§Г®ГўГ ГІГ«ГҐГ© Г±ГіГ¬Г¬Гі, ГЄГ®ГІГ®Г°ГіГѕ Г®Г­ГЁ ГЇГ®ГІГ°Г ГІГЁГ«ГЁ+
+    //2)Г±Г¤ГҐГ«Г ГІГј Г®ГІГ¤ГҐГ«ГјГ­ГіГѕ ГґГіГ­ГЄГ¶ГЁГѕ Г¤Г«Гї Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГї Г¤Г Г­Г­Г»Гµ Гў ГІГ ГЎГ«ГЁГ¶Г» Г¬Г Г­Г ГЈГҐГ° ГЁ ГѕГ§ГҐГ°+
+    // 3)Г±ГўГїГ§Г ГІГј Г¬ГҐГ¦Г¤Гі Г±Г®ГЎГ®Г© Г¬Г Г­Г ГЈГҐГ°Г®Гў ГЁ ГѕГ§ГҐГ°Г®Гў, Г±ГіГ¬Г¬Г  Гі Г¬ГҐГ­ГҐГ¤Г¦ГҐГ°Г  Г°Г ГўГ­Г , ГІГ®Г© Г±ГіГ¬Г¬ГҐ, ГЄГ®ГІГ®Г°ГіГѕ ГЇГ®ГІГ°Г ГІГЁГ«ГЁ ГўГ±ГҐ ГҐГЈГ® ГЄГ«ГЁГҐГ­ГІГ»
+    //4) Г±Г¤ГҐГ«Г ГІГј ГўГ®Г§Г¬Г®Г¦Г­Г®Г±ГІГј Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї Г±ГіГ¬Г¬Г» Гі ГЄГ®Г­ГЄГ°ГҐГІГ­Г®ГЈГ® ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Г±Гї+
+    //Г¤Г®Г¬Г ГёГЄГі Г§Г ГЄГЁГ­ГіГІГј Г­Г  ГЈГЁГІ ГЁ ГЇГ°Г®ГЇГЁГ±Г ГІГј ГЇГ°ГЁГ¬ГҐГ°Г» Г°Г ГЎГ®ГІГ» Гў ГґГ Г©Г«ГҐ readme
 
     private static final String url = "jdbc:postgresql://localhost:5432/postgres";
     private static final String user = "postgres";
@@ -23,26 +23,11 @@ public class Lesson33HomeWork {
 
         connection = DriverManager.getConnection(url, user, String.valueOf(password));
         statement = connection.createStatement();
-        ResultSet resultSet;
-        String query = "SELECT * FROM manager160 WHERE sum = (SELECT sum FROM ov160 where manager_id IN (SELECT id FROM ov160))";
-        resultSet = statement.executeQuery(query);
 
-        List<Manager> list = new ArrayList<>();
-        while (resultSet.next()) {
-            Manager manager = new Manager();
-            manager.setId(resultSet.getLong(1));
-            manager.setName(resultSet.getString(2));
-            manager.setDept(resultSet.getInt(3));
-            manager.setSum(resultSet.getInt(4));
-
-            list.add(manager);
-        }
-        System.out.println(list);
-
-//        addManager(statement);
-//        setUserSum(statement);
-//        setUserData(statement);
-//        updateUserSum(statement);
+       addManager(statement);
+       setUserSum(statement);
+       setUserAndManagerData(statement);
+       updateSumForUser(statement);
 
 
     }
